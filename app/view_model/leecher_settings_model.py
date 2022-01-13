@@ -2,12 +2,14 @@ import os
 import sys
 
 from PySide2.QtCore import QUrl
+from PySide2.QtGui import QGuiApplication
 from PySide2.QtQuick import QQuickView
-from PySide2.QtWidgets import QApplication, QDialog, QLineEdit, QPushButton
+from PySide2.QtQuickControls2 import QQuickStyle
 
 
 def do_it() -> None:
     global view
+    QQuickStyle.setStyle("Material")
     view = QQuickView()
     view.setResizeMode(QQuickView.SizeRootObjectToView)
 
@@ -22,6 +24,6 @@ def do_it() -> None:
 
 
 if __name__ == "__main__":
-    app = QApplication([])
+    app = QGuiApplication([])
     do_it()
     app.exec_()

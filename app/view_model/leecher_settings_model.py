@@ -1,6 +1,7 @@
 import os
 import sys
 
+from PySide2 import QtWebEngine
 from PySide2.QtCore import QUrl, QCoreApplication
 from PySide2.QtGui import QGuiApplication, Qt
 from PySide2.QtQml import QQmlApplicationEngine
@@ -25,8 +26,12 @@ def do_it() -> QQmlApplicationEngine:
 
 
 if __name__ == "__main__":
+    QtWebEngine.QtWebEngine.initialize()
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    # QApplication.setAttribute(Qt.AA_ShareOpenGLContexts)
     QCoreApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    app = QGuiApplication(["--style", "material"])
+    # QtWebEngine.QtWebEngine.initialize()
+    app = QGuiApplication([])
+    QtWebEngine.QtWebEngine.initialize()
     do_it()
     sys.exit(app.exec_())

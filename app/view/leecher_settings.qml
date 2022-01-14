@@ -3,6 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
 import QtQuick.Controls.Universal 2.15
+import QtWebView 1.15
 
 
 ApplicationWindow {
@@ -285,49 +286,158 @@ ApplicationWindow {
         }
         Item {
             id: scheduleTab
-
-            GridLayout {
-                rows    : 2
-                columns : 9
-                anchors.fill: parent
-
-                    Label {
-                        Layout.leftMargin: 15
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        text: "TextField 1:"
+            property int sideMargin: 15
+                GridLayout {
+                    id: scheduleGrid
+                    property double colMulti : scheduleGrid.width / scheduleGrid.columns
+                    property double rowMulti : scheduleGrid.height / scheduleGrid.rows
+                    function prefWidth(item){
+                        return colMulti * item.Layout.columnSpan
+                    }
+                    function prefHeight(item){
+                        return rowMulti * item.Layout.rowSpan
                     }
 
-                    TextField {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 6
-                        Layout.fillWidth: true
-                        Layout.leftMargin: 15
-                        Layout.rightMargin: 15
-                        placeholderText: "TextField 1"
-                    }
+                    rows    : 9
+                    columns : 9
+                    anchors.fill: parent
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            text: "OP project:"
+                        }
+                        ComboBox {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            model: ["Loading ..."]
+                        }
 
-                    Label {
-                        Layout.rowSpan   : 2
-                        Layout.columnSpan: 3
-                        width: parent.width
-//                        wrapMode: Label.Wrap
-//                        horizontalAlignment: Qt.AlignHLeft
-                        text: "TextField 2:"
-                    }
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            text: "SG url:"
+                        }
+                        TextField {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            placeholderText: "https://my-shotgrid.instance.com"
+                        }
 
-                    TextField {
-                        Layout.rowSpan   : 2
-                        Layout.columnSpan: 6
-                        placeholderText: "TextField 2"
-//                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-//                }
-            }
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            text: "SG script name:"
+                        }
+                        TextField {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            placeholderText: "My shotgrid script name"
+                        }
+
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            text: "SG API key:"
+                        }
+                        TextField {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            placeholderText: "My shotgrid API Key"
+                        }
+
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            text: "SG project ID:"
+                        }
+                        TextField {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            inputMethodHints: Qt.ImhDigitsOnly
+                            placeholderText: "My shotgrid project ID"
+                        }
+
+                        Label {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 2
+                            Layout.columnSpan: 3
+                            text: "SG fields mapping:"
+                        }
+
+                        ScrollView {
+                            Layout.rowSpan   : 2
+                            Layout.columnSpan: 6
+                            Layout.fillWidth: true
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+
+                            Layout.preferredWidth  : scheduleGrid.prefWidth(this)
+                            Layout.preferredHeight : scheduleGrid.prefHeight(this)
+                            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                            ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+                            TextArea {
+                                placeholderText: "JSON mapping goes here"
+                                wrapMode: TextArea.Wrap
+
+                            }
+                        }
+
+//                        Item {
+//                            Layout.rowSpan : 1
+//                            Layout.columnSpan : 6
+//                        }
+                        RowLayout {
+                            Layout.leftMargin: scheduleTab.sideMargin
+                            Layout.rightMargin: scheduleTab.sideMargin
+                            Layout.rowSpan : 1
+                            Layout.columnSpan : 9
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignRight
+    //                        Layout.preferredHeight : 50
+    //                        Layout.preferredWidth : 50
+
+                            Button {
+                                text: "Run batch"
+                            }
+                        }
+
+                }
+
+
+
+
+
+
 
         }
         Item {
             id: monitoringTab
+            WebView {
+                id: webView
+                anchors.fill: parent
+                Layout.fillWidth: true
+                url: "http://google.com"
+            }
         }
     }
 

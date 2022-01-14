@@ -1,296 +1,626 @@
-import QtQuick 2.3
-import QtQuick.Controls 1.6
-import QtQuick.Layouts 1.4
-import QtQuick.Controls.Material 2.12
-import QtQuick.Controls.Universal 2.12
+import QtQuick 2.7
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Controls.Material 2.15
+import QtQuick.Controls.Universal 2.15
 
-TabView {
-    anchors.leftMargin: 2.5
-    anchors.rightMargin: 2.5
-    anchors.topMargin: 2.5
-    anchors.bottomMargin: 2.5
-    anchors.fill: parent
-    Tab {
-        title: "Batch"
-                GridLayout {
-                    id : batchGrid
-                    anchors.fill: parent
-                    rows    : 10
-                    columns : 12
-                    property double colMulti : batchGrid.width / batchGrid.columns
-                    property double rowMulti : batchGrid.height / batchGrid.rows
-                    function prefWidth(item){
-                        return colMulti * item.Layout.columnSpan
-                    }
-                    function prefHeight(item){
-                        return rowMulti * item.Layout.rowSpan
-                    }
 
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("OpenPype project")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 9
-                        Layout.minimumHeight: 30
-                        Layout.maximumHeight: 35
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        ComboBox {
-                            anchors.leftMargin: 15
-                            anchors.rightMargin: 15
-                            anchors.topMargin: 5
-                            anchors.bottomMargin: 5
-                            anchors.fill: parent
-                            anchors.centerIn: parent
+ApplicationWindow {
 
-                            id: batchProject
-                            model: ["..."]
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("Url")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 9
-                        Layout.minimumHeight: 30
-                        Layout.maximumHeight: 35
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        TextField {
-                            anchors.leftMargin: 15
-                            anchors.rightMargin: 15
-                            anchors.topMargin: 5
-                            anchors.bottomMargin: 5
-                            anchors.fill: parent
-                            anchors.centerIn: parent
-                            id: url
-                            placeholderText: qsTr("https://....")
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("Script name")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 9
-                        Layout.minimumHeight: 30
-                        Layout.maximumHeight: 35
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        TextField {
-                            anchors.leftMargin: 15
-                            anchors.rightMargin: 15
-                            anchors.topMargin: 5
-                            anchors.bottomMargin: 5
-                            anchors.fill: parent
-                            anchors.centerIn: parent
-                            id: scriptName
-                            placeholderText: qsTr("Your Shotgrid script name...")
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("API Key")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 9
-                        Layout.minimumHeight: 30
-                        Layout.maximumHeight: 35
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        TextField {
-                            anchors.leftMargin: 15
-                            anchors.rightMargin: 15
-                            anchors.topMargin: 5
-                            anchors.bottomMargin: 5
-                            anchors.fill: parent
-                            anchors.centerIn: parent
-                            id: apiKey
-                            placeholderText: qsTr("Your Shotgrid API Key...")
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("Shotgrid project ID")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 9
-                        Layout.minimumHeight: 30
-                        Layout.maximumHeight: 35
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        TextField {
-                            anchors.leftMargin: 15
-                            anchors.rightMargin: 15
-                            anchors.topMargin: 5
-                            anchors.bottomMargin: 5
-                            anchors.fill: parent
-                            anchors.centerIn: parent
-                            id: shotgridProjectId
-                            placeholderText: qsTr("Your Shotgrid project ID...")
-                        }
-                    }
-                    Item {
-                        Layout.rowSpan   : 1
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
-                        Label {
-                            leftPadding: 9
-                            anchors.verticalCenter:parent.verticalCenter
-                            text: qsTr("Fields mapping")
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                    Item {
+    Material.theme: Material.Dark
+    Material.accent: Material.Green
 
-                            Layout.rowSpan   : 3
-                            Layout.columnSpan: 9
+    title: "Leecher manager"
+    width: 520
+    height: 480
+    visible: true
+
+
+    header: TabBar {
+        id: tabs
+        width: parent.width
+        TabButton {
+            text: qsTr("Batch")
+            width: 120
+        }
+        TabButton {
+            text: qsTr("Schedule")
+            width: 120
+        }
+        TabButton {
+            text: qsTr("Monitoring")
+            width: 120
+        }
+    }
+    StackLayout {
+        anchors.fill: parent
+        currentIndex: tabs.currentIndex
+
+        Item {
+            id: batchTab
+//            Layout.preferredWidth: parent.width
+                    GridLayout {
+                        id : batchGrid
+                        anchors.fill: parent
+                        rows    : 10
+                        columns : 12
+                        property double colMulti : batchGrid.width / batchGrid.columns
+                        property double rowMulti : batchGrid.height / batchGrid.rows
+                        function prefWidth(item){
+                            return colMulti * item.Layout.columnSpan
+                        }
+                        function prefHeight(item){
+                            return rowMulti * item.Layout.rowSpan
+                        }
+
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
                             Layout.preferredWidth  : batchGrid.prefWidth(this)
                             Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("OpenPype project")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            ComboBox {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+//                                anchors.topMargin: 5
+//                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+//                                anchors.centerIn: parent
 
-//                        ScrollView {
-
-
-//                            Layout.minimumHeight: 30
-//                            Layout.maximumHeight: 35
-
-                            TextArea {
+                                id: batchProject
+                                model: ["..."]
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Url")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+//                                anchors.topMargin: 5
+//                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+//                                anchors.centerIn: parent
+                                id: url
+                                placeholderText: qsTr("https://....")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Script name")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
                                 anchors.leftMargin: 15
                                 anchors.rightMargin: 15
                                 anchors.topMargin: 5
                                 anchors.bottomMargin: 5
                                 anchors.fill: parent
                                 anchors.centerIn: parent
-                                id: fieldsMapping
+                                id: scriptName
+                                placeholderText: qsTr("Your Shotgrid script name...")
                             }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("API Key")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: apiKey
+                                placeholderText: qsTr("Your Shotgrid API Key...")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Shotgrid project ID")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: shotgridProjectId
+                                placeholderText: qsTr("Your Shotgrid project ID...")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Fields mapping")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+
+                            Layout.rowSpan   : 3
+                            Layout.columnSpan: 9
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+
+                            ScrollView {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+    //                            Layout.minimumHeight: 30
+    //                            Layout.maximumHeight: 35
+
+                                TextArea {
+                                    wrapMode: TextArea.Wrap
+                                    id: fieldsMapping
+                                }
+                            }
+                        }
+                        Rectangle {
+                            id : greenRect
+                            color : 'green'
+                            Layout.rowSpan : 1
+                            Layout.columnSpan : 12
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                        }
+
+                }
+
+//            Rectangle {
+//                color: 'red'
+//                anchors.fill: parent
+//            }
+
+//            Component {
+//                id: batchStackView
+//
+//
+//                    Row {
+//                        spacing: 10
+//                        Button {
+//                            text: "Push"
+//                            onClicked: stack.push(mainView)
 //                        }
-                    }
-                    Rectangle {
-                        id : greenRect
-                        color : 'green'
-                        Layout.rowSpan : 1
-                        Layout.columnSpan : 12
-                        Layout.preferredWidth  : batchGrid.prefWidth(this)
-                        Layout.preferredHeight : batchGrid.prefHeight(this)
+//                        Button {
+//                            text: "Pop"
+//                            enabled: stack.depth > 1
+//                            onClicked: stack.pop()
+//
+//                        }
+//                        Text {
+//                            text: stack.depth
+//                        }
+//                    }
+//
+//                }
+        }
+        Item {
+            id: scheduleTab
+
+            GridLayout {
+                rows    : 2
+                columns : 9
+                anchors.fill: parent
+
+                    Label {
+                        Layout.leftMargin: 15
+                        Layout.rowSpan   : 1
+                        Layout.columnSpan: 3
+                        text: "TextField 1:"
                     }
 
+                    TextField {
+                        Layout.rowSpan   : 1
+                        Layout.columnSpan: 6
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 15
+                        Layout.rightMargin: 15
+                        placeholderText: "TextField 1"
+                    }
+
+                    Label {
+                        Layout.rowSpan   : 2
+                        Layout.columnSpan: 3
+                        width: parent.width
+//                        wrapMode: Label.Wrap
+//                        horizontalAlignment: Qt.AlignHLeft
+                        text: "TextField 2:"
+                    }
+
+                    TextField {
+                        Layout.rowSpan   : 2
+                        Layout.columnSpan: 6
+                        placeholderText: "TextField 2"
+//                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+//                }
             }
 
+        }
+        Item {
+            id: monitoringTab
+        }
     }
-    Tab {
-        title: "Schedule"
-                GridLayout {
-                    id : grid
+
+    /*
+    TabBar {
+        anchors.leftMargin: 2.5
+        anchors.rightMargin: 2.5
+        anchors.topMargin: 2.5
+        anchors.bottomMargin: 2.5
+        anchors.fill: parent
+        TabButton {
+            text: qsTr("Batch")
+                    GridLayout {
+                        id : batchGrid
+                        anchors.fill: parent
+                        rows    : 10
+                        columns : 12
+                        property double colMulti : batchGrid.width / batchGrid.columns
+                        property double rowMulti : batchGrid.height / batchGrid.rows
+                        function prefWidth(item){
+                            return colMulti * item.Layout.columnSpan
+                        }
+                        function prefHeight(item){
+                            return rowMulti * item.Layout.rowSpan
+                        }
+
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("OpenPype project")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            ComboBox {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+
+                                id: batchProject
+                                model: ["..."]
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Url")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: url
+                                placeholderText: qsTr("https://....")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Script name")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: scriptName
+                                placeholderText: qsTr("Your Shotgrid script name...")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("API Key")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: apiKey
+                                placeholderText: qsTr("Your Shotgrid API Key...")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Shotgrid project ID")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 9
+                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 35
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            TextField {
+                                anchors.leftMargin: 15
+                                anchors.rightMargin: 15
+                                anchors.topMargin: 5
+                                anchors.bottomMargin: 5
+                                anchors.fill: parent
+                                anchors.centerIn: parent
+                                id: shotgridProjectId
+                                placeholderText: qsTr("Your Shotgrid project ID...")
+                            }
+                        }
+                        Item {
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                            Label {
+                                leftPadding: 9
+                                anchors.verticalCenter:parent.verticalCenter
+                                text: qsTr("Fields mapping")
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Item {
+
+                                Layout.rowSpan   : 3
+                                Layout.columnSpan: 9
+                                Layout.preferredWidth  : batchGrid.prefWidth(this)
+                                Layout.preferredHeight : batchGrid.prefHeight(this)
+
+    //                        ScrollView {
+
+
+    //                            Layout.minimumHeight: 30
+    //                            Layout.maximumHeight: 35
+
+                                TextArea {
+                                    anchors.leftMargin: 15
+                                    anchors.rightMargin: 15
+                                    anchors.topMargin: 5
+                                    anchors.bottomMargin: 5
+                                    anchors.fill: parent
+                                    anchors.centerIn: parent
+                                    id: fieldsMapping
+                                }
+    //                        }
+                        }
+                        Rectangle {
+                            id : greenRect
+                            color : 'green'
+                            Layout.rowSpan : 1
+                            Layout.columnSpan : 12
+                            Layout.preferredWidth  : batchGrid.prefWidth(this)
+                            Layout.preferredHeight : batchGrid.prefHeight(this)
+                        }
+
+                }
+
+        }
+        TabButton {
+            text: qsTr("Schedule")
+                    GridLayout {
+                        id : grid
+                        anchors.fill: parent
+                        rows    : 12
+                        columns : 12
+                        property double colMulti : grid.width / grid.columns
+                        property double rowMulti : grid.height / grid.rows
+                        function prefWidth(item){
+                            return colMulti * item.Layout.columnSpan
+                        }
+                        function prefHeight(item){
+                            return rowMulti * item.Layout.rowSpan
+                        }
+
+                        Rectangle {
+                            color : 'red'
+                            Layout.rowSpan   : 10
+                            Layout.columnSpan: 3
+                            Layout.preferredWidth  : grid.prefWidth(this)
+                            Layout.preferredHeight : grid.prefHeight(this)
+                        }
+                        Rectangle {
+                            color : 'yellow'
+                            Layout.rowSpan   : 10
+                            Layout.columnSpan: 9
+                            Layout.preferredWidth  : grid.prefWidth(this)
+                            Layout.preferredHeight : grid.prefHeight(this)
+                        }
+                        Rectangle {
+                            id : greenRect2
+                            color : 'green'
+                            Layout.rowSpan : 2
+                            Layout.columnSpan : 12
+                            Layout.preferredWidth  : grid.prefWidth(this)
+                            Layout.preferredHeight : grid.prefHeight(this)
+                        }
+                    }
+        }
+        TabButton {
+            text: qsTr("Monitoring")
+            Rectangle {
+                color: "green"
+
+                StackLayout {
+                    id: layout3
                     anchors.fill: parent
-                    rows    : 12
-                    columns : 12
-                    property double colMulti : grid.width / grid.columns
-                    property double rowMulti : grid.height / grid.rows
-                    function prefWidth(item){
-                        return colMulti * item.Layout.columnSpan
-                    }
-                    function prefHeight(item){
-                        return rowMulti * item.Layout.rowSpan
-                    }
-
+                    currentIndex: 1
                     Rectangle {
-                        color : 'red'
-                        Layout.rowSpan   : 10
-                        Layout.columnSpan: 3
-                        Layout.preferredWidth  : grid.prefWidth(this)
-                        Layout.preferredHeight : grid.prefHeight(this)
+                        color: 'teal'
+                        implicitWidth: 200
+                        implicitHeight: 200
                     }
                     Rectangle {
-                        color : 'yellow'
-                        Layout.rowSpan   : 10
-                        Layout.columnSpan: 9
-                        Layout.preferredWidth  : grid.prefWidth(this)
-                        Layout.preferredHeight : grid.prefHeight(this)
+                        color: 'plum'
+                        implicitWidth: 300
+                        implicitHeight: 200
                     }
-                    Rectangle {
-                        id : greenRect
-                        color : 'green'
-                        Layout.rowSpan : 2
-                        Layout.columnSpan : 12
-                        Layout.preferredWidth  : grid.prefWidth(this)
-                        Layout.preferredHeight : grid.prefHeight(this)
-                    }
-                }
-    }
-    Tab {
-        title: "Monitoring"
-        Rectangle {
-            color: "green"
-
-            StackLayout {
-                id: layout3
-                anchors.fill: parent
-                currentIndex: 1
-                Rectangle {
-                    color: 'teal'
-                    implicitWidth: 200
-                    implicitHeight: 200
-                }
-                Rectangle {
-                    color: 'plum'
-                    implicitWidth: 300
-                    implicitHeight: 200
                 }
             }
         }
     }
+    */
 }

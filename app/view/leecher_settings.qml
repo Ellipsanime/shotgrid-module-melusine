@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
@@ -11,6 +11,7 @@ ApplicationWindow {
     width: 520
     height: 540
     visible: true
+
 
     Material.theme: Material.Dark
     Material.accent: Material.Green
@@ -51,6 +52,7 @@ ApplicationWindow {
                     rows    : 12
                     columns : 9
                     anchors.fill: parent
+                        // Row 1
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -66,6 +68,7 @@ ApplicationWindow {
                             model: ["Loading ..."]
                         }
 
+                        // Row 2
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -75,12 +78,17 @@ ApplicationWindow {
                         TextField {
                             Layout.rowSpan   : 1
                             Layout.columnSpan: 6
+                            selectByMouse: true
                             Layout.fillWidth: true
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "https://my-shotgrid.instance.com"
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+                            }
                         }
 
+                        // Row 3
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -90,12 +98,14 @@ ApplicationWindow {
                         TextField {
                             Layout.rowSpan   : 1
                             Layout.columnSpan: 6
+                            selectByMouse: true
                             Layout.fillWidth: true
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid script name"
                         }
 
+                        // Row 4
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -105,12 +115,14 @@ ApplicationWindow {
                         TextField {
                             Layout.rowSpan   : 1
                             Layout.columnSpan: 6
+                            selectByMouse: true
                             Layout.fillWidth: true
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid API Key"
                         }
 
+                        // Row 5
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -121,13 +133,14 @@ ApplicationWindow {
                             Layout.rowSpan   : 1
                             Layout.columnSpan: 6
                             Layout.fillWidth: true
+                            selectByMouse: true
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             inputMethodHints: Qt.ImhDigitsOnly
                             placeholderText: "My shotgrid project ID"
                         }
 
-
+                        // Row 6
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 1
@@ -137,10 +150,12 @@ ApplicationWindow {
                         CheckBox {
                             Layout.rowSpan   : 1
                             Layout.columnSpan: 6
+                            Layout.leftMargin: 2
                             Layout.alignment: Qt.AlignLeft
                             checked: false
                         }
 
+                        // Row 7,8,9
                         Label {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rowSpan   : 3
@@ -161,9 +176,12 @@ ApplicationWindow {
                             TextArea {
                                 placeholderText: "JSON mapping goes here"
                                 wrapMode: TextArea.Wrap
+                                selectByMouse: true
 
                             }
                         }
+
+                         // Row 10
                         RowLayout {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
@@ -223,6 +241,7 @@ ApplicationWindow {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "https://my-shotgrid.instance.com"
+                            selectByMouse: true
                         }
 
                         Label {
@@ -238,6 +257,7 @@ ApplicationWindow {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid script name"
+                            selectByMouse: true
                         }
 
                         Label {
@@ -253,6 +273,7 @@ ApplicationWindow {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid API Key"
+                            selectByMouse: true
                         }
 
                         Label {
@@ -269,6 +290,7 @@ ApplicationWindow {
                             Layout.rightMargin: scheduleTab.sideMargin
                             inputMethodHints: Qt.ImhDigitsOnly
                             placeholderText: "My shotgrid project ID"
+                            selectByMouse: true
                         }
 
                         Label {
@@ -292,6 +314,7 @@ ApplicationWindow {
                             TextArea {
                                 placeholderText: "JSON mapping goes here"
                                 wrapMode: TextArea.Wrap
+                                selectByMouse: true
 
                             }
                         }

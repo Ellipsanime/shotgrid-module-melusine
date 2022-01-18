@@ -12,7 +12,6 @@ from PySide2.QtWidgets import QApplication
 
 def do_it() -> QQmlApplicationEngine:
     global engine
-    QQuickStyle.setStyle("Material")
     engine = QQmlApplicationEngine()
 
     qml_file = os.path.join(
@@ -26,6 +25,7 @@ def do_it() -> QQmlApplicationEngine:
 
 
 if __name__ == "__main__":
+    QQuickStyle.setStyle("Material")
     QtWebEngine.QtWebEngine.initialize()
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     # QApplication.setAttribute(Qt.AA_ShareOpenGLContexts)

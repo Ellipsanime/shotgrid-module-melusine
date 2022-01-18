@@ -2,34 +2,32 @@ import QtQuick 2.7
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls.Material 2.15
-import QtQuick.Controls.Universal 2.15
 import QtWebView 1.15
 
 
 ApplicationWindow {
 
-    Material.theme: Material.Dark
-    Material.accent: Material.Green
-
-    title: "Leecher manager"
+    title: "SG Leecher manager"
     width: 520
     height: 540
     visible: true
 
+    Material.theme: Material.Dark
+    Material.accent: Material.Green
 
     header: TabBar {
         id: tabs
         width: parent.width
         TabButton {
-            text: qsTr("Batch")
+            text: "Batch"
             width: 120
         }
         TabButton {
-            text: qsTr("Schedule")
+            text: "Schedule"
             width: 120
         }
         TabButton {
-            text: qsTr("Monitoring")
+            text: "Monitoring"
             width: 120
         }
     }

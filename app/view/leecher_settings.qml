@@ -317,7 +317,7 @@ ApplicationWindow {
                 id: webView
                 anchors.fill: parent
                 Layout.fillWidth: true
-                url: "http://google.com"
+                url: "https://www.whatismybrowser.com/"
             }
         }
     }

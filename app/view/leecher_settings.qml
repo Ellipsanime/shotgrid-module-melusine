@@ -359,6 +359,7 @@ ApplicationWindow {
         }
         Item {
             id: monitoringTab
+            // TODO add gridview from https://opensourcelibs.com/lib/qmlgrid and https://github.com/hahn-kev/QmlGrid
 //            WebView {
 //                id: webView
 //                anchors.fill: parent

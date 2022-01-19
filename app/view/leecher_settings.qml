@@ -40,6 +40,8 @@ ApplicationWindow {
             id: batchTab
                 GridLayout {
                     id: batchGrid
+                    property string validColor: "#EEEEEE"
+                    property string invalidColor: "#E91E63"
                     property double colMulti : batchGrid.width / batchGrid.columns
                     property double rowMulti : batchGrid.height / batchGrid.rows
                     function prefWidth(item){
@@ -76,16 +78,17 @@ ApplicationWindow {
                             text: "SG url:"
                         }
                         TextField {
-                            Layout.rowSpan   : 1
-                            Layout.columnSpan: 6
-                            selectByMouse: true
                             Layout.fillWidth: true
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
+                            Layout.rowSpan   : 1
+                            Layout.columnSpan: 6
+                            selectByMouse: true
                             placeholderText: "https://my-shotgrid.instance.com"
                             validator: RegularExpressionValidator {
                                 regularExpression: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
                             }
+                            color: acceptableInput ? batchGrid.validColor : batchGrid.invalidColor
                         }
 
                         // Row 3
@@ -103,6 +106,10 @@ ApplicationWindow {
                             Layout.leftMargin: scheduleTab.sideMargin
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid script name"
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^(?:.{3,})$/
+                            }
+                            color: acceptableInput ? batchGrid.validColor : batchGrid.invalidColor
                         }
 
                         // Row 4
@@ -138,6 +145,10 @@ ApplicationWindow {
                             Layout.rightMargin: scheduleTab.sideMargin
                             inputMethodHints: Qt.ImhDigitsOnly
                             placeholderText: "My shotgrid project ID"
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^\d{1,}$/
+                            }
+                            color: acceptableInput ? batchGrid.validColor : batchGrid.invalidColor
                         }
 
                         // Row 6
@@ -201,6 +212,8 @@ ApplicationWindow {
             property int sideMargin: 15
                 GridLayout {
                     id: scheduleGrid
+                    property string validColor: "#EEEEEE"
+                    property string invalidColor: "#E91E63"
                     property double colMulti : scheduleGrid.width / scheduleGrid.columns
                     property double rowMulti : scheduleGrid.height / scheduleGrid.rows
                     function prefWidth(item){
@@ -242,6 +255,10 @@ ApplicationWindow {
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "https://my-shotgrid.instance.com"
                             selectByMouse: true
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+                            }
+                            color: acceptableInput ? scheduleGrid.validColor : scheduleGrid.invalidColor
                         }
 
                         Label {
@@ -258,6 +275,10 @@ ApplicationWindow {
                             Layout.rightMargin: scheduleTab.sideMargin
                             placeholderText: "My shotgrid script name"
                             selectByMouse: true
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^.{3,}$/
+                            }
+                            color: acceptableInput ? scheduleGrid.validColor : scheduleGrid.invalidColor
                         }
 
                         Label {
@@ -291,6 +312,10 @@ ApplicationWindow {
                             inputMethodHints: Qt.ImhDigitsOnly
                             placeholderText: "My shotgrid project ID"
                             selectByMouse: true
+                            validator: RegularExpressionValidator {
+                                regularExpression: /^\d{1,}$/
+                            }
+                            color: acceptableInput ? scheduleGrid.validColor : scheduleGrid.invalidColor
                         }
 
                         Label {
@@ -334,12 +359,12 @@ ApplicationWindow {
         }
         Item {
             id: monitoringTab
-            WebView {
-                id: webView
-                anchors.fill: parent
-                Layout.fillWidth: true
-                url: "https://www.whatismybrowser.com/"
-            }
+//            WebView {
+//                id: webView
+//                anchors.fill: parent
+//                Layout.fillWidth: true
+//                url: "https://www.whatismybrowser.com/"
+//            }
         }
     }
 }
